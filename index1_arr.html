@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<script>
+'use strict';
+
+// Суммирование введенных чисел
+/* function sumInput() {
+    let nums = [];
+    
+    while (true) {
+        let input = prompt('enter value');
+
+        if (input === '' || input === null || !isFinite(input)) break;
+
+        nums.push(+input);
+    }
+
+    let sum = 0;
+    for (let num of nums) {
+        sum += num;
+    }
+
+    return sum;
+}
+
+alert( sumInput() ); */
+
+
+// Создать расширяемый калькулятор
+/* function Calculator() {
+
+    this.methods = {
+        "+": (a, b) => a + b,
+        "-": (a, b) => a - b,
+    };
+
+   this.calculate = function(str) {
+      
+       let split = str.split(' ');
+       let a = +split[0];
+       let op = split[1];
+       let b = +split[2];
+
+       if (!this.methods[op] || isNaN(a) || isNaN(b)) {
+            return NaN;
+       }
+
+       return this.methods[op](a, b);
+   };
+
+   this.addMethod = function(name, func) {
+  this.methods[name] = func;
+};
+
+};
+
+// добавляем функции калькулятора
+let powerCalc = new Calculator;
+powerCalc.addMethod("*", (a, b) => a * b);
+powerCalc.addMethod("/", (a, b) => a / b);
+powerCalc.addMethod("**", (a, b) => a ** b);
+
+let result = powerCalc.calculate("2 ** 3");
+alert( result ); // 8
+
+let calc = new Calculator;
+// вычисляем
+alert( calc.calculate("3 * 7") );  */
+
+
+
+// создаеи массив от свойств объекта
+/* let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+
+let users = [ vasya, petya, masha ];
+
+let names = users.map(item => item.name);
+
+alert( names ); // Вася, Петя, Маша */
+
+
+// объдиняем name и surname в один элемент в новом массиве 
+/* 
+let vasya = { name: "Вася", surname: "Пупкин", id: 1 };
+let petya = { name: "Петя", surname: "Иванов", id: 2 };
+let masha = { name: "Маша", surname: "Петрова", id: 3 };
+
+let users = [ vasya, petya, masha ];
+
+let usersMapped = users.map(user => ({ // доп скобки () для строчных функций 
+  fullName: `${user.name} ${user.surname}`,
+  id: user.id
+}));
+
+
+usersMapped = [
+  { fullName: "Вася Пупкин", id: 1 },
+  { fullName: "Петя Иванов", id: 2 },
+  { fullName: "Маша Петрова", id: 3 }
+]
+
+
+alert( usersMapped[0].id ) // 1
+alert( usersMapped[0].fullName ) // Вася Пупкин
+*/
+
+
+//Отсортировать пользователей по возрасту
+
+/* function sortByAge(arr) {
+    return arr.sort((a, b) => a.age - b.age);
+    // arr.sort((a, b) => a.age > b.age ? 1 : -1);
+};
+
+
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 28 };
+let john = { name: "John", age: 16 };
+let mark = { name: "Mark", age: 40 };
+
+let arr = [ vasya, petya, masha, john, mark ];
+
+sortByAge(arr);
+
+// теперь: [john, vasya, masha, petya, mark]
+alert(arr[0].name); // John
+alert(arr[1].name); // Вася
+alert(arr[2].name); // Маша */
+
+
+//Перемешайте массив
+/* function shuffle(arr) {
+    arr.sort(() => Math.random() - 0.5);
+}
+
+let arr = [1, 2, 3, 4, 5, 6];
+
+shuffle(arr);
+alert( arr );
+
+shuffle(arr);
+alert( arr );
+
+shuffle(arr);
+alert( arr );
+
+// это решение не уравнивает вероятности выпадения каждого варианта. Лучший способ - алгоритм Фишера и Йется
+
+ */
+
+
+
+//Получить средний возраст
+
+/* //мой вариант - через цикл
+function getAverageAge(arr) {
+    let sum = 0;
+
+    for(let i = 0; i < arr.length; i++) {
+        sum += +arr[i].age;
+    }
+
+    return sum / arr.length 
+} 
+
+//по учебнику - через reduce
+function getAverageAge(users) {
+  return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+}
+
+let vasya = { name: "Вася", age: 25 };
+let petya = { name: "Петя", age: 30 };
+let masha = { name: "Маша", age: 29 };
+
+let arr = [ vasya, petya, masha ];
+
+alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+*/
+
+function unique(arr) {
+    let result = [];
+
+for (let str of arr) {
+  if (!result.includes(str)) {
+    result.push(str);
+  }
+}
+
+return result;
+}
+
+let strings = ["кришна", "кришна", "харе", "харе",
+  "харе", "харе", "кришна", "кришна", ":-O"
+];
+
+alert( unique(strings) )
+
+
+
+
+
+
+
+
+
+
+
+</script>

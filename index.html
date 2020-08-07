@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<script>
+'use strict';
+
+
+// возвразаем только уникальные значения, преобразумая массив в set, а set обратно в массив
+/* function unique(arr) {
+  return Array.from(new Set(arr));
+}
+
+let values = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique(values) ); // Hare, Krishna, :-O */
+
+
+
+// функция, которая очищает список от анаграмм (т.е. от слов, состоящих из одинаковых букв)
+/* function aclean(arr) {
+  let map = new Map();
+
+  for (let word of arr) {
+    // разбиваем слово на буквы, сортируем и объединяем снова в строку - цепочка вызовов
+    let sorted = word.toLowerCase().split("").sort().join(""); // (*)
+
+    
+    map.set(sorted, word);
+  }
+  //возращаем массив из значений Map. 
+   return Array.from(map.values());
+}
+
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era" */
+
+
+
+// Максимальная зарплата: Создайте функцию topSalary(salaries), 
+//которая возвращает имя самого высокооплачиваемого сотрудника. 
+/* let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+function topSalary(salaries) {
+
+  let max = 0;
+  let maxName = null;
+
+//превращает объект в массив через Object.entries
+//деструктурируем массив через const [name, salary]
+  for(const [name, salary] of Object.entries(salaries)) {
+    if (max < salary) {
+      max = salary;
+      maxName = name;
+    }
+  }
+
+  return maxName;
+
+};
+
+alert( topSalary(salaries) ) */
+
+
+
+
+
+// Вернуть день недели по дате
+// через массив
+/* function getWeekDay(date) {
+  let days = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+
+  return days[date.getDay()];
+}
+
+// через switch
+function getWeekDay(date) {
+  let day = date.getDay();
+
+  switch (day) {
+    case 0: day = "ВС";
+            break;
+    case 1: day = "ПН";
+            break;          
+    case 2: day = "ВТ";
+            break; 
+    case 3: day = "СР";
+            break; 
+    case 4: day = "ЧТ";
+            break; 
+    case 5: day = "ПТ";
+            break; 
+    case 6: day = "СБ";
+            break; 
+  }
+return day
+};
+
+let date = new Date(2012, 0, 4);  // 3 января 2012 года
+alert( getWeekDay(date) ); */
+
+
+// Сколько сегодня прошло секунд?
+/* function getSecondsToday() {
+  let now = new Date();
+
+  // создаём объект с текущими днём/месяцем/годом
+  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  let diff = now - today; // разница в миллисекундах
+  return Math.round(diff / 1000); // получаем секунды
+  
+  return 
+}
+alert( getSecondsToday() ) */
+
+
+
+
+// Сколько секунд осталось до завтра?
+/* function getSecondsToTomorrow() {
+  let now = new Date();
+  // завтрашняя дата = текущая + 1 день
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), (now.getDate() + 1));
+  let diff = tomorrow - now;
+  return Math.round(diff / 1000)
+}
+
+alert( getSecondsToTomorrow() ) */
+
+
+
+//Форматирование относительной даты
+/* function formatDate(date) {
+  let now = new Date();
+  let diff = now.getTime() - date.getTime();
+  
+  let time;
+
+  if (diff <= 1000) {
+    return "прямо сейчас"
+  } else if (diff > 1000 && diff <= 60000 ) {
+    time = diff / 1000;
+    return `${time} сек. назад`
+  } else if (diff > 60000 && diff <= 3600000) {
+    time = diff / 60000;
+    return `${time} мин. назад`
+  } else if (diff > 3600000) {
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear().toString();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+
+    year = year.toString().slice(-2);
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+    hour = hour < 10 ? '0' + hour : hour;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    return `${day}.${month}.${year} ${hour}:${minutes}`
+  }
+}
+
+alert( formatDate(new Date(new Date - 1)) ); // "прямо сейчас"
+alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 сек. назад"
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 мин. назад"
+// вчерашняя дата
+alert( formatDate(new Date(new Date - 86400 * 1000)) ) */;
+
+
+
+
+
+
+
+//Преобразуйте объект в JSON, а затем обратно в обычный объект
+/* let user = {
+  name: "Василий Иванович",
+  age: 35
+};
+
+let json = JSON.stringify(user);
+let obj = Json.parse(json);
+//let user2 = JSON.parse(JSON.stringify(user)); */
+ 
+
+
+
+//Удаляем цикличные ссылки без удаления нужных свойств
+/* let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Совещание",
+  occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+  place: room
+};
+
+// цикличные ссылки
+room.occupiedBy = meetup;
+meetup.self = meetup;
+
+alert( JSON.stringify(meetup, function replacer(key, value) {
+  //проверяем, что значение meetup - это цикличная ссылка
+  //но нельзя удалить основной объект (который передается в функцию первым в виде {"": "meetup"}
+  //поэтому проверяем key =="", чтобы исключить первый вызов, где значение value равно meetup.
+  return (key != "" && value == meetup) ? undefined : value;
+})); */
+
+
+
+
+
+// Сумма чисел от 1 до n
+// Мое решение с циклом
+/* function sumToCyc(n) { 
+  let sum = n;
+  for (let i = 1; i <= n; i++) {
+    sum = sum + (n - i)
+  }
+  return sum
+}
+
+// Мое решение с рекурсией
+function sumToRec(n) { 
+  if (n == 1) {
+    return n;
+  } else {
+    return (n + sumToRec(n - 1));
+  }
+}
+
+//Их решение с циклом
+function sumTo(n) {
+  let sum = 0;
+  for (let i = 1; i <= n; i++) {
+    sum += i;
+  }
+  return sum;
+}
+
+//Решение по формуле: sumTo(n) = n*(n+1)/2:
+function sumToFor(n) {
+  return n * (n + 1) / 2;
+}
+
+alert( sumToCyc(100) );
+alert( sumToRec(100) );
+alert( sumTo(100) );
+alert( sumToFor(100) ); */
+
+
+
+
+//Вычислить факториал
+/* function factorial(n) {
+  if (n == 1) {
+    return 1;
+  } else {
+    return n * factorial(n - 1);
+  }
+
+  //без if
+  //return n ? n * factorial(n - 1) : 1;
+}
+
+alert( factorial(5) ); // 120 */
+
+
+
+//Числа Фибоначчи
+/* function fib(n) {
+  if (n <= 1) {
+    return n
+  } else {
+    return (fib(n - 1) + fib(n - 2));
+  }
+    //return n <= 1 ? n : fib(n - 1) + fib(n - 2);
+}
+
+alert(fib(3)); // 2
+alert(fib(7)); // 13 */
+
+//более быстрый код для Фибоначчи - с циклом
+/* function fib(n) {
+  let a = 1;
+  let b = 1;
+  for (let i = 3; i <= n; i++) {
+    let c = a + b; // c = 2
+    a = b; // a = 1
+    b = c; // b = 2
+    // в следующем цикле при сумммировании а и b получим с = 3 и т.д.
+  }
+  return b;
+}
+alert( fib(3) ); // 2
+alert( fib(7) ); // 13
+alert( fib(77) ); // 5527939700884757 */
+
+
+//Вывести односвязный список
+/* let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+function printListCyc(list) {
+  let tmp = list; //временная переменная для хранения элемента списка и перемещения по нему
+
+  while (tmp) {
+    alert(tmp.value);
+    tmp = tmp.next;
+  }
+}
+
+function printListRec(list) {
+  alert(list.value); // выводим текущий элемент
+
+  if (list.next) {
+    printList(list.next); // делаем то же самое для остальной части списка
+  }
+}
+
+printListCyc(list);
+printListRec(list); */
+
+
+
+
+//Вывести односвязный список в обратном порядке
+let list = {
+  value: 1,
+  next: {
+    value: 2,
+    next: {
+      value: 3,
+      next: {
+        value: 4,
+        next: null
+      }
+    }
+  }
+};
+
+//для цикла нужно сначала перебрать элементы в прямом порядке и запомнить их в массиве, 
+//а затем вывести то, что мы запомнили, в обратном порядке
+/* function printReverseListCyc(list) {
+  let arr = [];
+  let tmp = list;
+
+  while (tmp) {
+    arr.push(tmp.value);
+    tmp = tmp.next;
+  }
+
+  for (let i = arr.length - 1; i >= 0; i--) {
+    alert( arr[i] );
+  }
+};
+
+//Сначала надо вывести оставшуюся часть списка, а затем текущий элемент
+function printReverseList(list) {
+if (list.next) {
+  printReverseList(list.next);
+}
+alert(list.value);
+}
+
+printReverseListCyc(list);
+printReverseList(list); */
+
+
+
+
+
+
+//Напишите функцию sum, которая работает таким образом: sum(a)(b) = a+b
+//Чтобы вторые скобки заработали, первые – должны вернуть функцию.
+/* function sum(a) {
+return function(b) {
+  return a + b; // берёт "a" из внешнего лексического окружения
+};
+}
+alert( sum(1)(2) ); // 3
+alert( sum(5)(-1) ); // 4
+ */
+
+
+//без вложенной функции
+/* function inBetween(a, b) {
+  let arr1 = [];
+  for (let i = a; i <= b; i++) {
+    arr1.push(i);
+  }
+  alert( arr1 ) 
+} */
+
+//с вложенной функцией
+/* function inBetween(a, b) {
+  return function(x) {
+    return x >= a && x <= b;
+  };
+}
+
+function inArray(arr) {
+  return function(x) { //x - элемент массива
+    return arr.includes(x);
+  };
+}
+
+let arr = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+ */
+
+
+/* function bind(context, fn) {
+  return function(...args) {
+    fn.apply(context, args)
+  }
+}
+
+function logPerson() {
+  console.log(`Person: ${this.name}, ${this.age}, ${this.job}`)
+};
+
+const person1 = {name: 'John', age: 22, job: 'Dev'};
+const person2 = {name: 'Mark', age: 25, job: 'SMM'};
+
+bind(person1, logPerson)();
+bind(person2, logPerson)(); */
+
+
+
+
+//сортировать массив объектов по полю
+/* let users = [
+  { name: "John", age: 20, surname: "Johnson" },
+  { name: "Pete", age: 18, surname: "Peterson" },
+  { name: "Ann", age: 19, surname: "Hathaway" }
+];
+
+function byField(fieldName) {
+  return function(a, b) { //a и b - элементы массива (сравниваем попарно)
+    return (a, b) => a[fieldName] > b[fieldName] ? 1 : -1;
+  }
+}
+
+users.sort(byField('name'));
+users.sort(byField('age')); */
+
+
+/* function makeArmy() {
+  let shooters = []; // создаем массив функций
+  
+  for (let i = 0; i < 10; i++) { // в цикле while не было локального i, потому оно брало его из внешнего окружения после окончания цикла
+    let shooter = function() { // у for свой i и свое окружения для каждой итерации, потому i разные
+      alert( i ); // должна выводить порядковый номер
+    };
+    shooters.push(shooter); // добавляем функцию в массив
+  }
+  return shooters;
+}
+
+let army = makeArmy();
+army[0](); // вызываем функции из массимва в соответствии с индексом, с функция возвращает свое значение i
+army[5](); 
+ */
+
+
+
+/*  function ask(question, ...handlers) {
+  let isYes = confirm(question);
+
+  for(let handler of handlers) {
+    //если у handler нет аргументов, то вызываем его (alert('Вы ответили да'))
+    if (handler.length == 0) {
+      if (isYes) handler();
+    } else {
+      //если есть агрументы - вызываем значение isYes (true или false)
+      handler(isYes);
+    }
+  }
+
+}
+
+// для положительных ответов вызываются оба типа обработчиков
+// для отрицательных - только второго типа
+ask("Вопрос?", () => alert('Вы ответили да'), result => alert(result)); */
+
+
+
+/* 
+let sayHi = function func(who) {
+  if (who) {
+    alert(`Hello, ${who}`);
+  } else {
+    func("Guest"); // Теперь всё в порядке
+  }
+};
+
+let welcome = sayHi;
+sayHi = null;
+
+welcome('Ira');  */
+
+
+
+
+//Установка и уменьшение значения счётчика
+//В решении использована локальная переменная count, 
+//а методы сложения записаны прямо в counter. 
+//Они разделяют одно и то же лексическое окружение 
+//и также имеют доступ к текущей переменной count.
+/* function makeCounter() {
+  let count = 0;
+
+  function counter() {
+    return count++;
+  }
+
+  counter.set = value => count = value;
+  counter.decrease = () => count--;
+
+  return counter;
+}
+
+let counter = makeCounter();
+  alert( counter() ); // 0
+  alert( counter() ); // 1
+  counter.set(10); // установить новое значение счётчика
+  alert( counter() ); // 10
+  counter.decrease(); // уменьшить значение счётчика на 1
+  alert( counter() ); // 10 (вместо 11) */
+
+
+//Сумма с произвольным количеством скобок
+//результат, возвращаемый sum, должен быть функцией
+//Между вызовами эта функция должна удерживать в памяти текущее значение счётчика
+/* function sum(a) {
+  let currSum = a;
+
+  function f(b) {
+    currSum += b;
+    return f; // <-- не вызывает себя. Просто возвращает
+  };
+
+//сначала выполняются все скобки после sum, а только потом,
+//в самом конце, уже строковое преобразование с помощью alert. 
+//Метод toString функции срабатывает именно на этом alert, а не на скобках.
+//!!!!без преобразования к примитиву будет возвращен текст функции
+  f.toString = function() {
+    return currSum;
+  }; 
+
+  return f;
+};
+
+//функция sum выполняется лишь однажды и просто возвращает функцию f.
+//Далее, при каждом последующем вызове, f суммирует свой аргумент со значением currSum и возвращает себя же.
+alert( sum(1)(2) ); // 1 + 2
+alert( sum(1)(2)(3) ); // 1 + 2 + 3
+alert( sum(5)(-1)(2) );
+alert( sum(6)(-1)(-2)(-3) );
+alert( sum(0)(1)(2)(3)(4)(5) );
+//Функция в конце каждого "цикла" возвращает функцию "f" 
+//(тут надо понять, что возвращается именно функция,а не результат её выполнения), 
+//которая выполняется в том случае, если дальше присутствуют аргументы. */
+
+
+
+
+
+//printNumbers(from, to), которая выводит число каждую секунду, начиная от from и заканчивая to.
+//рекурсивный setTimeout
+/* function printNumbers1(from, to) {
+  let i = from;
+
+  setTimeout(function go(){
+  alert(i);
+  if (i < to) {
+     setTimeout(go, 1000);
+   } 
+   i++;
+  }, 1000);
+
+};
+printNumbers1(5, 10);
+
+
+//setInterval
+function printNumbers2(from, to) {
+  let i = from;
+
+//нужен для прерывания
+  let timerId = setInterval(function go(){
+  alert(i);
+  if (i == to) {
+    clearInterval(timerId);
+   } 
+   i++;
+  }, 1000);
+};
+printNumbers2(5, 10); */
+
+
+
+
+
+
+
+
+//декоратор spy(func), который должен возвращать обёртку, которая сохраняет все вызовы функции в своём свойстве calls
+/* function work(a, b) {
+  alert( a + b ); // произвольная функция или метод
+}
+
+//Здесь мы можем использовать call.push(args) для хранения всех аргументов в списке 
+//и f.apply(this, args) для переадресации вызова.
+function spy(func) {
+
+function wrapper(...args) {
+  wrapper.calls.push(args);
+  return func.apply(this, arguments);
+}
+
+wrapper.calls = [];
+
+return wrapper;
+}
+
+let workW = spy(work);
+
+workW(1, 2); // 3
+workW(4, 5); // 9
+
+for (let args of workW.calls) {
+  alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+} */
+
+
+
+
+//Создайте декоратор delay(f, ms), который задерживает каждый вызов f на ms миллисекунд.
+/* function f(x) {
+  alert(x);
+};
+
+function delay(func, ms) {
+//функция-стрелка не имеет собственных this и arguments, 
+//поэтому f.apply(this, arguments) берет this и arguments из обёртки.
+  function wrapper () {
+    return setTimeout(() => func.call(this, ...arguments), ms);
+    //return setTimeout(() => func.apply(this, arguments), ms);
+  }
+  return wrapper;
+}
+
+// создаём обёртки
+let f1000 = delay(f, 1000);
+let f1500 = delay(f, 1500);
+f1000("test"); // показывает "test" после 1000 мс
+f1500("test"); // показывает "test" после 1500 мс */
+
+
+
+
+//Результатом декоратора debounce(f, ms) должна быть обёртка, 
+//которая передаёт вызов f не более одного раза в ms миллисекунд
+/* function debounce (f, ms) {
+  let isCooldown = false; //готова к выполнению
+
+  return function() {
+    if (isCooldown) return;
+
+    f.apply(this, arguments);
+
+    //Пока isCoolDown имеет значение true, все остальные вызовы игнорируются.
+    isCooldown = true; //ожидание окончания тайм-аута
+
+    //Затем setTimeout устанавливает его в false после заданной задержки.
+    setTimeout(() => isCooldown = false, ms);
+  };
+}
+
+let f = debounce(alert, 1000);
+f(1); // выполняется немедленно
+f(2); // проигнорирован
+setTimeout( () => f(3), 100); // проигнорирован (прошло только 100 мс)
+setTimeout( () => f(4), 1100); // выполняется
+setTimeout( () => f(5), 1500); // проигнорирован (прошло только 400 мс от последнего вызова) */
+
+
+
+
+
+
+//Вызов askPassword() в приведённом ниже коде должен проверить пароль 
+//и затем вызвать user.loginOk/loginFail в зависимости от ответа.
+/* function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'Вася',
+
+  loginOk() {
+    alert(`${this.name} logged in`);
+  },
+
+  loginFail() {
+    alert(`${this.name} failed to log in`);
+  },
+
+};
+
+//более короткий вариант
+askPassword(user.loginOk.bind(user), user.loginFail.bind(user)) */
+
+//мой тоже правильный вариант
+/* let ok = user.loginOk.bind(user);
+let fail = user.loginFail.bind(user);
+askPassword(ok, fail); */
+
+
+//Что нужно передать в вызов функции askPassword в коде ниже, 
+//чтобы она могла вызывать функцию user.login(true) как ok и функцию user.login(false) как fail?
+/* function askPassword(ok, fail) {
+  let password = prompt("Password?", '');
+  if (password == "rockstar") ok();
+  else fail();
+}
+
+let user = {
+  name: 'John',
+
+  login(result) {
+    alert( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+//1. создать частично применённую функцию на основе user.login, 
+//которая использует объект user в качестве контекста и получает соответствующий первый аргумент
+askPassword(user.login.bind(user, true), user.login.bind(user, false)); // ?
+
+//2.  использовать стрелочную функцию-обёртку
+askPassword(() => user.login(true), () => user.login(false)); */
+
+
+
+/* let user = {
+  name: 'John',
+  age: 30,
+
+  login(result) {
+    alert( this.name + (result ? ' logged in' : ' failed to log in') );
+  }
+};
+
+let descriptor = Object.getOwnPropertyDescriptor(user, 'age');
+console.log(descriptor);
+ */
+
+
+
+ //Добавьте всем функциям в прототип метод defer(ms), 
+ //который вызывает функции через ms миллисекунд.
+/*  function f() {
+  alert("Hello!");
+}
+
+Function.prototype.defer = function(ms) {
+  setTimeout(this, ms);
+};
+
+f.defer(1000); // выведет "Hello!" через 1 секунду */
+
+
+
+
+//Добавьте всем функциям в прототип метод defer(ms), 
+//который возвращает обёртку, откладывающую вызов функции на ms миллисекунд.
+/* function f(a, b) {
+  alert( a + b );
+}
+
+Function.prototype.defer = function(ms) {
+  let f = this;
+  return function(...args) {
+    setTimeout(() => f.apply(this, args), ms);
+  }
+
+f.defer(1000)(1, 2); // выведет 3 через 1 секунду. */
+
+
+
+
+
+
+//Добавьте ему метод dictionary.toString(), 
+//который должен возвращать список ключей, разделённых запятой. 
+//Ваш toString не должен выводиться при итерации объекта с помощью цикла for..in.
+/* let dictionary = Object.create(null, {
+  //Чтобы сделать toString неперечисляемым, 
+  //давайте определим его, используя дескриптор свойства. 
+  //Синтаксис Object.create позволяет нам добавить 
+  //в объект дескрипторы свойств как второй аргумент.
+    toString: {
+    value() {
+      return Object.keys(this).join();
+   }
+  }
+});
+
+//Когда мы создаём свойство с помощью дескриптора, 
+//все флаги по умолчанию имеют значение false. 
+//Таким образом, в коде выше dictionary.toString – неперечисляемое свойство.
+
+// добавляем немного данных
+dictionary.apple = "Apple";
+dictionary.__proto__ = "test"; // здесь __proto__ -- это обычный ключ
+
+// только apple и __proto__ выведены в цикле
+for(let key in dictionary) {
+  alert(key); // "apple", затем "__proto__"
+}
+
+// ваш метод toString в действии
+alert(dictionary); // "apple,__proto__" */
+
+
+
+
+
+/* function Rabbit(name) {
+  this.name = name;
+}
+Rabbit.prototype.sayHi = function() {
+  alert(this.name);
+};
+
+let rabbit = new Rabbit("Rabbit");
+
+//Все эти вызовы делают одно и тоже или нет?
+rabbit.sayHi();                        // Rabbit
+Rabbit.prototype.sayHi();              // undefined
+Object.getPrototypeOf(rabbit).sayHi(); // undefined
+rabbit.__proto__.sayHi();              // undefined */
+//В первом вызове this == rabbit, во всех остальных this равен Rabbit.prototype, так как это объект перед точкой.
+//Так что только первый вызов выведет Rabbit, а остальные – undefined
+
+
+/* class Clock {
+
+  constructor({ template }) {
+    this.template = template;
+  }
+  
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+
+}
+
+let clock = new Clock({template: 'h:m:s'});
+//clock.start();
+ */
+
+
+
+
+
+/* class Clock {
+  constructor({ template }) {
+    this.template = template;
+  }
+
+  render() {
+    let date = new Date();
+
+    let hours = date.getHours();
+    if (hours < 10) hours = '0' + hours;
+
+    let mins = date.getMinutes();
+    if (mins < 10) mins = '0' + mins;
+
+    let secs = date.getSeconds();
+    if (secs < 10) secs = '0' + secs;
+
+    let output = this.template
+      .replace('h', hours)
+      .replace('m', mins)
+      .replace('s', secs);
+
+    console.log(output);
+  }
+
+  stop() {
+    clearInterval(this.timer);
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), 1000);
+  }
+}
+
+class ExtendedClock extends Clock {
+  constructor(options) {
+    super(options);
+    let { precision=1000 } = options;
+    this.precision = precision;
+  }
+
+  start() {
+    this.render();
+    this.timer = setInterval(() => this.render(), this.precision);
+  }
+}; */
+
+
+/* class FormatError extends SyntaxError {
+  constructor(message) {
+    super(message);
+    this.name = "FormatError";
+    this.stack = 1;
+  }
+}
+
+
+let err = new FormatError("ошибка форматирования");
+
+alert( err.message ); // ошибка форматирования
+alert( err.name ); // FormatError
+alert( err.stack ); // stack
+
+alert( err instanceof FormatError ); // true
+alert( err instanceof SyntaxError ); // true (потому что наследует от SyntaxError) */
+
+
+
+
+/* async function f() {
+
+let promise = new Promise((resolve, reject) => {
+  setTimeout(() => resolve("готово!"), 1000)
+});
+
+let result = await promise; // будет ждать, пока промис не выполнится (*)
+
+alert(result); // "готово!"
+}
+
+f();
+ */
+
+
+var myset = new Set();
+myset.add('foo');
+myset.add('bar');
+myset.add('baz');
+
+console.log(myset);
+
+var setI = myset.entries();
+
+console.log(setI);
+
+console.log(setI[0]);
+console.log(setI.next().value);
+
+
+</script>
